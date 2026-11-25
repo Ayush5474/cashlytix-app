@@ -31,7 +31,7 @@ export interface Category {
   isDefault: boolean;
 }
 
-export type TxnType = 'expense' | 'income' | 'transfer';
+export type TxnType = 'expense' | 'income' | 'transfer' | 'settlement';
 export type PaymentMethod = 'online' | 'offline' | 'credit_card';
 export type NeedWant = 'need' | 'want';
 export type InvestmentKind = 'mutual_funds' | 'stocks' | 'gold' | 'fd' | 'rd' | 'other';
@@ -53,6 +53,46 @@ export interface Transaction {
   investmentKind?: InvestmentKind;
   /** Local calendar date, YYYY-MM-DD. */
   date: string;
+  /** Present when the bill was shared with friends. `amount` is then the full bill. */
+  split?: SplitInfo;
+  /** Settlements only: the friend money was received from or paid to. */
+  friendId?: string;
+  settleDirection?: 'received' | 'paid';
+  createdAt: string;
+}
+
+/** Who paid and how the bill is divided. Person ids are 'me' or a friend id. */
+export interface SplitInfo {
+  payer: string;
+  /** Paise per person; always adds up to the transaction amount. */
+  shares: Record<string, number>;
+  groupId?: string;
+}
+
+export interface Friend {
+  id: string;
+  name: string;
+  createdAt: string;
+}
+
+export interface Group {
+  id: string;
+  name: string;
+  memberIds: string[];
+  createdAt: string;
+}
+
+export type Frequency = 'weekly' | 'monthly' | 'yearly';
+
+/** A repeating entry (rent, EMI, SIP, salary...). Creates real transactions as they fall due. */
+export interface RecurringRule {
+  id: string;
+  template: Omit<NewTransaction, 'date' | 'split' | 'friendId' | 'settleDirection'>;
+  frequency: Frequency;
+  /** Day of month the rule was created on, so month-end dates do not drift. */
+  anchorDay: number;
+  nextDate: string;
+  active: boolean;
   createdAt: string;
 }
 

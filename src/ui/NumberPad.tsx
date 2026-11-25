@@ -1,10 +1,10 @@
-import { Pressable, View } from 'react-native';
+import { View } from 'react-native';
 
 import type { PadKey } from '@/domain/money';
 
-import { T } from './components';
+import { Pressy, T } from './components';
 import { Icon } from './Icon';
-import { colors, radius } from './theme';
+import { radius, useTheme } from './theme';
 
 const ROWS: PadKey[][] = [
   ['1', '2', '3'],
@@ -14,29 +14,28 @@ const ROWS: PadKey[][] = [
 ];
 
 export function NumberPad({ onKey }: { onKey: (k: PadKey) => void }) {
+  const t = useTheme();
   return (
     <View style={{ gap: 8 }}>
       {ROWS.map((row, i) => (
         <View key={i} style={{ flexDirection: 'row', gap: 8 }}>
           {row.map((k) => (
-            <Pressable
+            <Pressy
               key={k}
               testID={`key-${k}`}
-              accessibilityRole="button"
               accessibilityLabel={k === 'del' ? 'Delete' : k}
               onPress={() => onKey(k)}
-              style={({ pressed }) => ({
+              scaleTo={0.93}
+              style={{
                 flex: 1,
                 height: 54,
                 borderRadius: radius.md,
                 alignItems: 'center',
                 justifyContent: 'center',
-                backgroundColor: pressed ? '#E2E8F0' : colors.card,
-                borderWidth: 1,
-                borderColor: colors.border,
-              })}>
-              {k === 'del' ? <Icon name="backspace" /> : <T size={22} weight="600">{k}</T>}
-            </Pressable>
+                backgroundColor: t.surface,
+              }}>
+              {k === 'del' ? <Icon name="backspace" color={t.text} /> : <T size={22} weight="600">{k}</T>}
+            </Pressy>
           ))}
         </View>
       ))}

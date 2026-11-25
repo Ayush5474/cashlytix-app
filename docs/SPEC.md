@@ -11,8 +11,8 @@
 - Local-first in v1 (no login). Cloud sync and login come later.
 
 ## Phasing
-1. **v0.1 (this repo now):** accounts, quick add, dashboard, transactions, local storage, web + Android build.
-2. Budgets per category, recurring entries, custom categories, CSV export.
+1. **v0.1:** accounts, quick add, dashboard, transactions, local storage, web + Android build.
+2. **v0.2 (current):** UI overhaul and animations, budgets, recurring entries, custom categories, CSV/JSON backup, split bills (local), dark mode, free-plan limits.
 3. Login + cloud sync, website parity, reminders, Play Store release.
 
 ## Open questions

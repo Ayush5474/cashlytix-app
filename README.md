@@ -13,12 +13,15 @@ npm test           # domain unit tests (vitest)
 npm run typecheck
 ```
 
-## What works today (v0.1)
+## What works today (v0.2)
 
-- Accounts (checking, saving, investment, cash, wallet, credit card) with derived balances
-- Quick Add: Expense / Income / Transfer with a number pad, category and account chips, optional details
-- Dashboard: total balance, period filter, income / expenses / net, tap-to-inspect donut, Need · Want · Saved bars, recent list
-- Transactions list with search and type filter, tap to edit or delete
+- **Quick Add** bottom sheet: Expense / Income / Transfer, number pad, category and account chips, optional details; edit, delete and Undo
+- **Split bills**: split with friends equally, by amount or by percent; only your share counts as your expense; groups, per-friend balances, Settle up, WhatsApp reminder
+- **Home**: balance, period filter, budgets with progress bars, tap-to-inspect donut, Need · Want · Saved, split summary, recent
+- **Budgets** (overall and per category), **recurring entries**, **custom categories**
+- **Backup**: CSV export, full JSON backup and restore
+- Light and dark mode, spring animations, haptics (phones), swipe-to-delete
+- Free plan limits with a Pro preview switch (no payments yet)
 - Data is stored on the device (no login yet)
 
 See [docs/SPEC.md](docs/SPEC.md) for the product decisions and [CLAUDE.md](CLAUDE.md) for code conventions.

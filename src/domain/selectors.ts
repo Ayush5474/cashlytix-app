@@ -1,5 +1,6 @@
 import type { Category, PaymentMethod, Period, Transaction } from './types';
 import { inPeriod } from './dates';
+import { effectiveExpense } from './split';
 
 export const inRange = (transactions: Transaction[], period: Period) =>
   transactions.filter((t) => inPeriod(t.date, period));
@@ -10,7 +11,7 @@ export function summarize(transactions: Transaction[], period: Period) {
   let expenses = 0;
   for (const t of inRange(transactions, period)) {
     if (t.type === 'income') income += t.amount;
-    else if (t.type === 'expense') expenses += t.amount;
+    else if (t.type === 'expense') expenses += effectiveExpense(t);
   }
   return { income, expenses, net: income - expenses };
 }
@@ -34,11 +35,13 @@ export function spendByCategory(
   let total = 0;
   for (const t of inRange(transactions, period)) {
     if (t.type !== 'expense' || !t.categoryId) continue;
+    const mine = effectiveExpense(t);
+    if (mine === 0) continue;
     const entry = totals.get(t.categoryId) ?? { amount: 0, count: 0 };
-    entry.amount += t.amount;
+    entry.amount += mine;
     entry.count += 1;
     totals.set(t.categoryId, entry);
-    total += t.amount;
+    total += mine;
   }
   return [...totals.entries()]
     .map(([categoryId, v]) => ({
@@ -60,10 +63,11 @@ export function needWantSaved(transactions: Transaction[], categories: Category[
   const result = { need: 0, want: 0, saved: 0 };
   for (const t of inRange(transactions, period)) {
     if (t.type !== 'expense') continue;
+    const mine = effectiveExpense(t);
     const category = t.categoryId ? byId.get(t.categoryId) : undefined;
-    if (category?.group === 'saved') result.saved += t.amount;
-    else if ((t.needWant ?? category?.group) === 'need') result.need += t.amount;
-    else result.want += t.amount;
+    if (category?.group === 'saved') result.saved += mine;
+    else if ((t.needWant ?? category?.group) === 'need') result.need += mine;
+    else result.want += mine;
   }
   return result;
 }
@@ -72,7 +76,9 @@ export function needWantSaved(transactions: Transaction[], categories: Category[
 export function spendByMethod(transactions: Transaction[], period: Period) {
   const result: Record<PaymentMethod, number> = { online: 0, offline: 0, credit_card: 0 };
   for (const t of inRange(transactions, period)) {
-    if (t.type === 'expense') result[t.paymentMethod ?? 'online'] += t.amount;
+    if (t.type === 'expense' && !(t.split && t.split.payer !== 'me')) {
+      result[t.paymentMethod ?? 'online'] += t.amount;
+    }
   }
   return result;
 }

@@ -15,7 +15,8 @@ export function accountBalance(account: Account, transactions: Transaction[]): n
   let balance = account.openingBalance;
   for (const t of transactions) {
     if (t.accountId === account.id) {
-      balance += t.type === 'income' ? arrives(account.type, t.amount) : leaves(account.type, t.amount);
+      const incoming = t.type === 'income' || (t.type === 'settlement' && t.settleDirection === 'received');
+      balance += incoming ? arrives(account.type, t.amount) : leaves(account.type, t.amount);
     }
     if (t.type === 'transfer' && t.toAccountId === account.id) {
       balance += arrives(account.type, t.amount);
@@ -37,8 +38,19 @@ export function totalBalance(accounts: Account[], transactions: Transaction[]): 
 /** Returns an error message, or null when the transaction is valid. */
 export function validateTransaction(t: NewTransaction, accounts: Account[]): string | null {
   if (!Number.isInteger(t.amount) || t.amount <= 0) return 'Enter an amount greater than zero.';
-  if (!accounts.some((a) => a.id === t.accountId)) return 'Choose an account.';
+  const paidByFriend = t.type === 'expense' && !!t.split && t.split.payer !== 'me';
+  if (!paidByFriend && !accounts.some((a) => a.id === t.accountId)) return 'Choose an account.';
   if (!isValidISO(t.date)) return 'Enter the date as YYYY-MM-DD.';
+  if (t.split) {
+    const parts = Object.values(t.split.shares);
+    if (parts.some((p) => !Number.isInteger(p) || p < 0)) return 'Split amounts must be whole paise.';
+    if (parts.reduce((s, p) => s + p, 0) !== t.amount) return 'Split shares must add up to the bill.';
+    if (t.type !== 'expense') return 'Only expenses can be split.';
+  }
+  if (t.type === 'settlement') {
+    if (!t.friendId) return 'Choose a friend.';
+    if (!t.settleDirection) return 'Choose whether you paid or received.';
+  }
   if (t.type === 'expense' && !t.categoryId) return 'Choose a category.';
   if (t.type === 'transfer') {
     if (!t.toAccountId || !accounts.some((a) => a.id === t.toAccountId)) return 'Choose the account to send to.';
