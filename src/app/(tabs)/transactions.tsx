@@ -5,7 +5,8 @@ import { ScrollView, TextInput, View } from 'react-native';
 import type { TxnType } from '@/domain/types';
 import { sortNewestFirst } from '@/domain/selectors';
 import { useStore } from '@/store/useStore';
-import { Chip, Empty, Fab, Header, Reveal, Screen } from '@/ui/components';
+import { CalendarView } from '@/ui/CalendarView';
+import { Chip, Empty, Fab, Header, Reveal, Screen, Segmented } from '@/ui/components';
 import { Icon } from '@/ui/Icon';
 import { TransactionRow } from '@/ui/TransactionRow';
 import { radius, useTheme } from '@/ui/theme';
@@ -25,6 +26,7 @@ export default function Activity() {
   const accounts = useStore((s) => s.accounts);
   const friends = useStore((s) => s.friends);
 
+  const [view, setView] = useState<'list' | 'calendar'>('list');
   const [query, setQuery] = useState('');
   const [filter, setFilter] = useState<TxnType | 'all'>('all');
 
@@ -50,6 +52,18 @@ export default function Activity() {
   return (
     <View style={{ flex: 1 }}>
       <Screen header={<Header title="Activity" />} bottomPad={90}>
+        <Segmented
+          options={[
+            { id: 'list' as const, label: 'List' },
+            { id: 'calendar' as const, label: 'Calendar' },
+          ]}
+          value={view}
+          onChange={setView}
+        />
+        {view === 'calendar' ? (
+          <CalendarView />
+        ) : (
+          <>
         <View
           style={{
             flexDirection: 'row',
@@ -87,6 +101,8 @@ export default function Activity() {
               </Reveal>
             ))}
           </View>
+        )}
+          </>
         )}
       </Screen>
       <Fab onPress={() => router.push('/add')} />

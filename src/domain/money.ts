@@ -59,3 +59,13 @@ export function pressKey(current: string, key: PadKey): string {
   if (current === '0') return key === '0' ? current : key;
   return current + key;
 }
+
+/** Short form for tight spaces: ₹850, ₹1.2k, ₹4.5L, ₹1.1Cr. */
+export function formatCompactINR(paise: number): string {
+  const rupees = Math.round(Math.abs(paise)) / 100;
+  const trim = (n: number) => String(Math.round(n * 10) / 10).replace(/\.0$/, '');
+  if (rupees < 1000) return `₹${trim(rupees)}`;
+  if (rupees < 100000) return `₹${trim(rupees / 1000)}k`;
+  if (rupees < 10000000) return `₹${trim(rupees / 100000)}L`;
+  return `₹${trim(rupees / 10000000)}Cr`;
+}

@@ -54,3 +54,17 @@ export function periodFor(id: PeriodId, now: Date = new Date()): Period {
 export function inPeriod(date: string, period: Period): boolean {
   return (!period.from || date >= period.from) && (!period.to || date <= period.to);
 }
+
+const MONTHS_LONG = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+const WEEKDAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+export const WEEKDAY_LETTERS = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
+
+/** (2026, 10) -> "November 2026". `month0` is 0-based. */
+export const monthLabel = (year: number, month0: number) => `${MONTHS_LONG[month0]} ${year}`;
+
+/** "2026-11-26" -> "Thu, 26 Nov". */
+export function formatDayLong(iso: string): string {
+  const [y, m, d] = iso.split('-').map(Number);
+  return `${WEEKDAYS[new Date(y, m - 1, d).getDay()]}, ${d} ${MONTHS[m - 1]}`;
+}

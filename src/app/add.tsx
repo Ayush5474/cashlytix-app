@@ -28,7 +28,7 @@ const METHOD_OPTIONS: { id: SplitMethod; label: string }[] = [
 ];
 
 export default function AddTransaction() {
-  const { id } = useLocalSearchParams<{ id?: string }>();
+  const { id, date: dateParam } = useLocalSearchParams<{ id?: string; date?: string }>();
   const t = useTheme();
 
   const accounts = useStore((s) => s.accounts);
@@ -53,7 +53,7 @@ export default function AddTransaction() {
   const [accountId, setAccountId] = useState(editing?.accountId || defaultAccount);
   const [toAccountId, setToAccountId] = useState<string | undefined>(editing?.toAccountId);
   const [description, setDescription] = useState(editing?.description ?? '');
-  const [date, setDate] = useState(editing?.date ?? todayISO());
+  const [date, setDate] = useState(editing?.date ?? (dateParam && isValidISO(dateParam) ? dateParam : todayISO()));
   const [needWant, setNeedWant] = useState<NeedWant | undefined>(editing?.needWant);
   const [method, setMethod] = useState<PaymentMethod | undefined>(editing?.paymentMethod);
   const [investmentKind, setInvestmentKind] = useState<InvestmentKind | undefined>(editing?.investmentKind);
