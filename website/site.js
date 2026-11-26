@@ -1,7 +1,7 @@
 
 (function(){
 var d=document.documentElement,tb=document.getElementById('theme'),saved=null;try{saved=localStorage.getItem('cx-theme')}catch(e){}
-d.dataset.theme=saved||(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');
+d.dataset.theme=saved||'dark';
 tb.onclick=function(){var t=d.dataset.theme==='dark'?'light':'dark';d.dataset.theme=t;try{localStorage.setItem('cx-theme',t)}catch(e){}};
 var cal=document.getElementById('cal'),heat=[0,1,0,2,1,0,0,2,1,3,0,1,2,0,1,1,0,3,2,1,0,2,1,1,0,2,3,1,0,1,1],h='';
 'SMTWTFS'.split('').forEach(function(x){h+='<b>'+x+'</b>'});for(var n=0;n<31;n++)h+='<span class="'+(heat[n]?'h'+heat[n]:'')+'" style="--i:'+n+'">'+(n+1)+'</span>';cal.innerHTML=h;
