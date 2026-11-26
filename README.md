@@ -27,3 +27,7 @@ npm run typecheck
 - Data is stored on the device until you sign in
 
 See [docs/SPEC.md](docs/SPEC.md) for the product decisions and [CLAUDE.md](CLAUDE.md) for code conventions.
+
+## Website
+
+`website/` holds the landing page, privacy and terms. `npm run build:site` builds everything into `site/` (landing at `/`, web app at `/app/`). GitHub Pages deploys this on every push to `main`: https://ayush5474.github.io/cashlytix-app/ (app: `/cashlytix-app/app/`).

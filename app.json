@@ -34,7 +34,7 @@
     ],
     "experiments": {
       "reactCompiler": true,
-      "baseUrl": "/cashlytix-app"
+      "baseUrl": "/cashlytix-app/app"
     },
     "ios": {
       "bundleIdentifier": "com.cashlytix.app",

@@ -20,11 +20,10 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - run: npm run build:web
-      - run: cp dist/index.html dist/404.html
+      - run: bash scripts/build-site.sh
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: site
   deploy:
     needs: build
     runs-on: ubuntu-latest
