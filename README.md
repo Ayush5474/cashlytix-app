@@ -13,7 +13,7 @@ npm test           # domain unit tests (vitest)
 npm run typecheck
 ```
 
-## What works today (v0.2)
+## What works today (v0.3)
 
 - **Quick Add** bottom sheet: Expense / Income / Transfer, number pad, category and account chips, optional details; edit, delete and Undo
 - **Split bills**: split with friends equally, by amount or by percent; only your share counts as your expense; groups, per-friend balances, Settle up, WhatsApp reminder
@@ -22,6 +22,8 @@ npm run typecheck
 - **Backup**: CSV export, full JSON backup and restore
 - Light and dark mode, spring animations, haptics (phones), swipe-to-delete
 - Free plan limits with a Pro preview switch (no payments yet)
-- Data is stored on the device (no login yet)
+- **Calendar** view of Activity: spend and entry count per day
+- **Cloud sync** (email sign-in, merges edits across devices) — switched on once Supabase keys are added, see docs/SYNC.md
+- Data is stored on the device until you sign in
 
 See [docs/SPEC.md](docs/SPEC.md) for the product decisions and [CLAUDE.md](CLAUDE.md) for code conventions.

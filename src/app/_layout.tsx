@@ -6,6 +6,7 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { useHydrated, useStore } from '@/store/useStore';
+import { useSyncManager } from '@/sync/useSync';
 import { showToast, ToastHost } from '@/ui/toast';
 import { useTheme } from '@/ui/theme';
 
@@ -14,6 +15,7 @@ const sheet = { presentation: 'transparentModal', animation: 'fade' } as const;
 export default function RootLayout() {
   const hydrated = useHydrated();
   const t = useTheme();
+  useSyncManager();
 
   useEffect(() => {
     if (!hydrated) return;
@@ -37,6 +39,7 @@ export default function RootLayout() {
           <Stack.Screen name="settle" options={sheet} />
           <Stack.Screen name="recurring-form" options={sheet} />
           <Stack.Screen name="upgrade" options={sheet} />
+          <Stack.Screen name="auth" options={sheet} />
         </Stack>
         <ToastHost />
       </SafeAreaProvider>

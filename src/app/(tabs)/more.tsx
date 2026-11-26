@@ -3,6 +3,8 @@ import { useState } from 'react';
 import { Switch, View } from 'react-native';
 
 import { useStore, type ThemeMode } from '@/store/useStore';
+import { syncConfigured } from '@/sync/config';
+import { signOut, syncNow, useSyncStatus } from '@/sync/useSync';
 import { Button, Card, Chip, Divider, Header, NavRow, Screen, SectionTitle, T, Wrap } from '@/ui/components';
 import { showToast } from '@/ui/toast';
 import { useTheme } from '@/ui/theme';
@@ -19,6 +21,7 @@ export default function More() {
   const setSettings = useStore((s) => s.setSettings);
   const resetAll = useStore((s) => s.resetAll);
   const [confirmReset, setConfirmReset] = useState(false);
+  const sync = useSyncStatus();
 
   return (
     <Screen header={<Header title="More" />}>
@@ -30,6 +33,35 @@ export default function More() {
         <NavRow title="Categories" subtitle="Add, rename, choose Need / Want / Saved" onPress={() => router.push('/categories')} testID="go-categories" />
         <Divider />
         <NavRow title="Backup & export" subtitle="CSV, full backup, restore" onPress={() => router.push('/backup')} testID="go-backup" />
+      </Card>
+
+      <Card>
+        <SectionTitle>Cloud sync</SectionTitle>
+        {!syncConfigured ? (
+          <T color={t.muted}>Cloud sync is not switched on yet. Your data stays on this device. Use Backup & export to keep a copy.</T>
+        ) : sync.session ? (
+          <>
+            <View style={{ gap: 2 }}>
+              <T weight="700" testID="sync-email">{sync.session.user.email}</T>
+              <T size={13} color={sync.state === 'error' ? t.expense : t.muted} testID="sync-status">
+                {sync.state === 'syncing'
+                  ? 'Syncing…'
+                  : sync.state === 'error'
+                    ? (sync.error ?? 'Sync failed')
+                    : sync.lastSyncedAt
+                      ? `Up to date · synced ${new Date(sync.lastSyncedAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`
+                      : 'Waiting to sync'}
+              </T>
+            </View>
+            <Button testID="sync-now" variant="soft" label="Sync now" onPress={() => void syncNow()} />
+            <Button testID="sign-out" variant="danger" label="Sign out" onPress={() => void signOut()} />
+          </>
+        ) : (
+          <>
+            <T color={t.muted}>Sign in to back up your data and use it on your phone and the website.</T>
+            <Button testID="open-auth" label={sync.loading ? 'Checking…' : 'Sign in or create account'} disabled={sync.loading} onPress={() => router.push('/auth')} />
+          </>
+        )}
       </Card>
 
       <Card>
@@ -60,7 +92,9 @@ export default function More() {
         {confirmReset ? (
           <>
             <T color={t.expense} weight="600">
-              This deletes all accounts, transactions, friends and budgets from this device.
+              {sync.session
+                ? 'This deletes all accounts, transactions, friends and budgets from this device and from your cloud copy, so every device you use will be cleared.'
+                : 'This deletes all accounts, transactions, friends and budgets from this device.'}
             </T>
             <Button
               testID="confirm-reset"

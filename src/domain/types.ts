@@ -17,6 +17,8 @@ export interface Account {
   /** Whether this account counts toward the Dashboard "Total Balance". */
   includeInTotal: boolean;
   createdAt: string;
+  /** Last change, ISO time. Used to merge edits made on different devices. */
+  updatedAt?: string;
 }
 
 /** Saved = Saving and Investment categories. Custom categories are need or want only. */
@@ -29,6 +31,7 @@ export interface Category {
   /** Optional monthly budget in paise. */
   budget?: number;
   isDefault: boolean;
+  updatedAt?: string;
 }
 
 export type TxnType = 'expense' | 'income' | 'transfer' | 'settlement';
@@ -59,6 +62,7 @@ export interface Transaction {
   friendId?: string;
   settleDirection?: 'received' | 'paid';
   createdAt: string;
+  updatedAt?: string;
 }
 
 /** Who paid and how the bill is divided. Person ids are 'me' or a friend id. */
@@ -73,6 +77,7 @@ export interface Friend {
   id: string;
   name: string;
   createdAt: string;
+  updatedAt?: string;
 }
 
 export interface Group {
@@ -80,6 +85,7 @@ export interface Group {
   name: string;
   memberIds: string[];
   createdAt: string;
+  updatedAt?: string;
 }
 
 export type Frequency = 'weekly' | 'monthly' | 'yearly';
@@ -94,6 +100,7 @@ export interface RecurringRule {
   nextDate: string;
   active: boolean;
   createdAt: string;
+  updatedAt?: string;
 }
 
 export type NewTransaction = Omit<Transaction, 'id' | 'createdAt'>;
