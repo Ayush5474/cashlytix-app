@@ -33,13 +33,13 @@ const light: Palette = {
   muted: '#6B7380',
   faint: '#9AA2AE',
   border: '#ECEEF1',
-  primary: '#0D9488',
+  primary: '#168A4A',
   onPrimary: '#FFFFFF',
-  primarySoft: '#E0F5F2',
+  primarySoft: '#E3F4EA',
   income: '#0E9F6E',
   expense: '#E5484D',
   warn: '#F59E0B',
-  need: '#0D9488',
+  need: '#168A4A',
   want: '#F59E0B',
   saved: '#6366F1',
   overlay: 'rgba(15,18,24,0.45)',
@@ -53,13 +53,13 @@ const dark: Palette = {
   muted: '#9099A6',
   faint: '#667080',
   border: '#1E232C',
-  primary: '#2DD4BF',
-  onPrimary: '#06201C',
-  primarySoft: '#10302C',
+  primary: '#34C77B',
+  onPrimary: '#052012',
+  primarySoft: '#123222',
   income: '#34D399',
   expense: '#F87171',
   warn: '#FBBF24',
-  need: '#2DD4BF',
+  need: '#34C77B',
   want: '#FBBF24',
   saved: '#818CF8',
   overlay: 'rgba(0,0,0,0.6)',
@@ -79,7 +79,7 @@ export function useTheme(): Theme {
 export const groupColor = (t: Palette, g: CategoryGroup) => (g === 'need' ? t.need : g === 'want' ? t.want : t.saved);
 
 /** Distinct slice colours for the donut, assigned by rank. */
-export const SLICE_COLORS = ['#0D9488', '#6366F1', '#F59E0B', '#EC4899', '#0EA5E9', '#84CC16', '#F97316', '#8B5CF6', '#64748B'];
+export const SLICE_COLORS = ['#168A4A', '#6366F1', '#F59E0B', '#EC4899', '#0EA5E9', '#84CC16', '#F97316', '#8B5CF6', '#64748B'];
 
 export const space = { xs: 4, sm: 8, md: 12, lg: 16, xl: 24 };
 export const radius = { sm: 10, md: 14, lg: 20, pill: 999 };

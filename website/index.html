@@ -1,194 +1,124 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Cashlytix – track spending, budgets and shared bills in 3 taps</title>
-<meta name="description" content="Cashlytix is a personal money tracker for India. Log an expense in 3 taps, see budgets, calendar and shared bills in one place. Free to start.">
-<meta name="theme-color" content="#0D9488">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Cashlytix – your money, in one place">
-<meta property="og:description" content="Log an expense in 3 taps. Budgets, calendar, credit cards and split bills, all in rupees.">
-<meta property="og:image" content="img/home.webp">
+<title>Cashlytix – a simple money tracker for India</title>
+<meta name="description" content="Cashlytix is a simple money tracker for India. Log an expense in 3 taps and see budgets, calendar, credit cards and shared bills in one place. Free to start.">
+<meta name="theme-color" content="#1FA45B">
+<meta property="og:type" content="website"><meta property="og:title" content="Cashlytix – track your money in 3 taps"><meta property="og:description" content="Budgets, calendar, credit cards and split bills in rupees. Free to start.">
 <link rel="icon" href="img/favicon.png">
-<link rel="preload" href="fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/figtree-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="style.css">
+<script>try{var s=localStorage.getItem('cx-theme');document.documentElement.dataset.theme=s||(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark')}catch(e){}</script>
 </head>
 <body>
-<a class="skip" href="#main">Skip to content</a>
-<div class="wrap">
- <header class="nav">
-  <a class="brand" href="./"><img src="img/favicon.png" alt="">Cashlytix</a>
-  <nav aria-label="Main">
-   <a href="#features">Features</a><a href="#plans">Plans</a><a href="#faq">FAQ</a>
-   <a class="btn" href="app/">Open the app</a>
-  </nav>
- </header>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="logo" viewBox="0 0 120 80"><path fill-rule="evenodd" d="M8 0H112A8 8 0 0 1 120 8V72A8 8 0 0 1 112 80H8A8 8 0 0 1 0 72V8A8 8 0 0 1 8 0ZM14 10H106V70H14Z"/><path d="M13.5 9.5H26A12.5 12.5 0 0 1 13.5 22Z"/><path d="M13.5 70.5V58A12.5 12.5 0 0 1 26 70.5Z"/><path d="M106.5 9.5H94A12.5 12.5 0 0 0 106.5 22Z"/><rect x="76" y="52" width="6.5" height="10" rx="1"/><rect x="85.5" y="44" width="6.5" height="18" rx="1"/><rect x="95" y="34" width="6.5" height="28" rx="1"/><path d="M30 24H64M30 35H64M34 24H44C57 24 57 46 44 46H34L56 65" fill="none" stroke="currentColor" stroke-width="5.6" stroke-linecap="round" stroke-linejoin="round" style="stroke:var(--ac)"/></symbol></svg>
+<header class="nav"><div class="wrap">
+ <a class="brand" href="#top" aria-label="Cashlytix home"><svg viewBox="0 0 120 80"><use href="#logo"/></svg></a>
+ <nav class="links" aria-label="Main">
+  <a class="l" href="#features">Features</a><a class="l" href="#app">Web app</a><a class="l" href="#plans">Plans</a><a class="l" href="#faq">FAQ</a>
+  <button class="tbtn" id="theme" aria-label="Switch light or dark mode"><svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 13A9 9 0 1 1 11 3a7 7 0 0 0 10 10z"/></svg></button>
+  <a class="btn out sm" href="app/">Log in</a>
+  <a class="btn sm" href="app/" style="margin-left:8px">Get started</a>
+ </nav>
+</div></header>
 
- <main id="main">
-  <div class="hero">
-   <div>
-    <h1>Log an expense in three taps.</h1>
-    <p class="lead">Cashlytix tracks your salary, spending, credit cards and shared bills in rupees. Everything is in one app, with no spreadsheets and no bank login.</p>
-    <div class="cta">
-     <a class="btn" href="app/">Open the app</a>
-     <a class="btn ghost" href="#download">Get it on your phone</a>
-    </div>
-    <p class="fine">Free to start. Your data stays on your device unless you turn on sync.</p>
-   </div>
-   <div class="stage">
-    <div class="phone"><div class="screen">
-     <img src="img/home.webp" alt="Home screen showing total balance, monthly income and spending, and a budget bar" width="780" height="1688">
-     <img src="img/add.webp" alt="Add transaction screen with category, account and number pad" width="780" height="1688" loading="lazy">
-     <img src="img/calendar.webp" alt="Calendar showing spending on each day of the month" width="780" height="1688" loading="lazy">
-     <img src="img/split.webp" alt="Split screen showing how much friends owe you" width="780" height="1688" loading="lazy">
-    </div></div>
-    <div class="tabs" role="tablist" aria-label="App screens">
-     <button role="tab" aria-selected="true">Home</button>
-     <button role="tab" aria-selected="false">Add</button>
-     <button role="tab" aria-selected="false">Calendar</button>
-     <button role="tab" aria-selected="false">Split</button>
-    </div>
-   </div>
+<main id="top">
+<div class="wrap hero">
+ <div>
+  <h1>A simple way to track your money.</h1>
+  <p class="lead">Log an expense in three taps. See your balance, budgets, credit cards and shared bills in one place, in rupees.</p>
+  <div class="cta"><a class="btn" href="app/">Get started free</a><a class="btn out" href="#app">Use it in your browser</a></div>
+  <p class="note">Free to start. No bank login needed. Sign in is optional.</p>
+  <div class="stores">
+   <a class="store" href="https://github.com/Ayush5474/cashlytix-app/releases"><svg viewBox="0 0 24 24"><path d="M4 3.5v17l9-8.5z" fill="#34C77B"/><path d="M4 3.5 16.5 10 13 12z" fill="#F2B63D"/><path d="M4 20.5 16.5 14 13 12z" fill="#E5536E"/><path d="m16.5 10 3.5 2-3.5 2L13 12z" fill="#7A8CFF"/></svg><span><small>Android</small>Download APK</span></a>
+   <a class="store" href="#faq"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.4 12.7c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.1-2.8.9-3.5.9s-1.8-.8-3-.8c-1.5 0-3 .9-3.8 2.3-1.6 2.8-.4 7 1.2 9.3.8 1.1 1.7 2.4 2.9 2.3 1.2 0 1.6-.7 3-.7s1.8.7 3 .7 2-1.1 2.8-2.2c.9-1.3 1.2-2.500 1.300-2.600-.1 0-2.500-1-2.500-3.900zM14.100 5.800c.6-.8 1.100-1.800.9-2.800-.9 0-2 .6-2.600 1.400-.6.700-1.100 1.700-.9 2.700 1 .1 2-.5 2.600-1.300z"/></svg><span><small>iPhone</small>Add to Home Screen</span></a>
   </div>
- </main>
+ </div>
+ <div class="demo" aria-label="Animated demo of adding an expense">
+  <div class="qa">
+   <div class="top"><span>Add expense</span><span>Today</span></div>
+   <div class="amt"><span class="cur">₹</span><span id="amt"></span><span class="caret"></span></div>
+   <div class="chips"><span class="chip" id="c0">Food</span><span class="chip">Transport</span><span class="chip">Shopping</span></div>
+   <div class="pad" id="pad"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>.</span><span>0</span><span>⌫</span></div>
+   <div class="save" id="save">Save ₹<span id="sv">0</span></div>
+   <div class="toast" id="toast">Saved. ₹640 on Food</div>
+  </div>
+ </div>
 </div>
 
-<section class="band" aria-labelledby="taps">
- <div class="wrap">
-  <h2 id="taps">Quick enough to do at the counter.</h2>
-  <p class="sub">Most money apps lose people because logging feels like homework. Here it takes three taps.</p>
-  <div class="taps">
-   <div class="tap"><b>1</b><h3>Tap +</h3><p>The add button is on every screen.</p></div>
-   <div class="tap"><b>2</b><h3>Type the amount</h3><p>Use the number pad. Your last account and category are already picked.</p></div>
-   <div class="tap"><b>3</b><h3>Tap Save</h3><p>Balances, budgets and the calendar update at once.</p></div>
-  </div>
+<section id="features"><div class="wrap">
+ <h2 class="h2">What you get in the app</h2>
+ <p class="sub">A quick look at how Cashlytix works.</p>
+ <div class="grid">
+  <div class="card rev"><div><h3>Budgets</h3><p>One monthly budget, plus limits per category.</p></div>
+   <div class="viz meter"><div class="big"><span data-count="4612">₹0</span> left</div>
+    <div><div class="mrow"><span>This month</span><span>₹35,388 of ₹40,000</span></div><div class="bar"><i class="w" style="--w:88%"></i></div></div>
+    <div><div class="mrow"><span>Food</span><span>₹7,050 of ₹8,000</span></div><div class="bar"><i class="w" style="--w:88%"></i></div></div></div></div>
+  <div class="card rev"><div><h3>Calendar</h3><p>See what you spent on every day.</p></div><div class="viz cal" id="cal"></div></div>
+  <div class="card rev"><div><h3>Split bills</h3><p>Only your share counts as your spending.</p></div>
+   <div class="viz split">
+    <div class="fr" style="--i:0">Asha<em>owes ₹3,000</em></div><div class="fr" style="--i:1">Ravi<em>owes ₹3,000</em></div><div class="fr" style="--i:2">Meera<em>owes ₹800</em></div>
+    <div class="tot"><span>You are owed</span><span style="color:var(--ac)">₹6,800</span></div></div></div>
+  <div class="card rev"><div><h3>Need, want, saved</h3><p>See where your salary goes.</p></div>
+   <div class="viz dn"><svg viewBox="0 0 42 42"><circle cx="21" cy="21" r="15.9" pathLength="100" stroke="var(--ac)" style="--d:52"/><circle cx="21" cy="21" r="15.9" pathLength="100" stroke="var(--warn)" style="--d:28;stroke-dashoffset:-52"/><circle cx="21" cy="21" r="15.9" pathLength="100" stroke="var(--mu)" style="--d:20;stroke-dashoffset:-80"/></svg>
+    <div class="lg"><div><i style="background:var(--ac)"></i>Need 52%</div><div><i style="background:var(--warn)"></i>Want 28%</div><div><i style="background:var(--mu)"></i>Saved 20%</div></div></div></div>
+  <div class="card rev"><div><h3>Recurring entries</h3><p>Rent, SIPs and subscriptions add themselves.</p></div>
+   <div class="viz rc"><div class="ri"><span class="ck" style="--i:0"><svg viewBox="0 0 24 24" fill="none" stroke="var(--ac-ink)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg></span>Rent<small>1st</small></div>
+    <div class="ri"><span class="ck" style="--i:1"><svg viewBox="0 0 24 24" fill="none" stroke="var(--ac-ink)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg></span>Index fund SIP<small>12th</small></div>
+    <div class="ri"><span class="ck" style="--i:2"><svg viewBox="0 0 24 24" fill="none" stroke="var(--ac-ink)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg></span>Netflix<small>5th</small></div></div></div>
+  <div class="card rev"><div><h3>Credit cards</h3><p>Paying the bill is a transfer, so it is never counted as spending twice.</p></div>
+   <div class="viz cc"><div class="ccard"><small>Card owed</small>₹8,400</div><div class="arrow"></div><div class="acc"><small>Salary account</small>Bill paid</div></div></div>
  </div>
-</section>
+</div></section>
 
-<section id="features" aria-labelledby="f-h">
- <div class="wrap">
-  <h2 id="f-h">See where the month went.</h2>
-  <p class="sub">The home screen answers the questions people actually ask: how much do I have, how much have I spent, and am I on budget?</p>
-
-  <div class="feat">
-   <div>
-    <h3>One balance you can trust</h3>
-    <p>Add your salary account, savings, cash and credit cards. Balances are worked out from your entries, so they never drift.</p>
-    <ul>
-     <li>Credit card spending counts as money you owe, not money you lost twice</li>
-     <li>Paying the card bill is a transfer, so it never inflates your spending</li>
-     <li>Monthly budget plus limits for each category</li>
-    </ul>
-   </div>
-   <div class="shot"><div class="phone"><img src="img/home-budget.webp" alt="Budget card and spending breakdown donut chart" width="780" height="1688" loading="lazy"></div></div>
-  </div>
-
-  <div class="feat flip">
-   <div>
-    <h3>A calendar of your spending</h3>
-    <p>Every day shows what you spent. Tap a date to see its entries, or add one for that day.</p>
-    <ul>
-     <li>Entries, spent and income for the whole month</li>
-     <li>Swipe an entry to delete it, with Undo if you slipped</li>
-    </ul>
-   </div>
-   <div class="shot"><div class="phone"><img src="img/calendar.webp" alt="Calendar view with daily spending totals" width="780" height="1688" loading="lazy"></div></div>
-  </div>
-
-  <div class="feat">
-   <div>
-    <h3>Split bills without the awkward chat</h3>
-    <p>Add a dinner or a trip, choose who shared it, and Cashlytix works out who owes whom. Only your own share counts as your spending.</p>
-    <ul>
-     <li>Split equally, by amount or by percentage</li>
-     <li>Groups for trips and flatmates</li>
-     <li>Send a reminder on WhatsApp in one tap</li>
-    </ul>
-   </div>
-   <div class="shot"><div class="phone"><img src="img/split.webp" alt="Split screen with a Goa trip group and friends who owe you" width="780" height="1688" loading="lazy"></div></div>
-  </div>
-
-  <div class="more">
-   <div><h4>Recurring entries</h4><p>Rent, SIPs and subscriptions add themselves each month.</p></div>
-   <div><h4>Need, want, saved</h4><p>See how your spending divides between essentials, extras and savings.</p></div>
-   <div><h4>Dark mode</h4><p>Follows your phone, or choose light or dark yourself.</p></div>
-   <div><h4>Your backup, your file</h4><p>Export everything as CSV or a backup file and restore it any time.</p></div>
-  </div>
+<section id="app"><div class="wrap">
+ <h2 class="h2">Use it on your phone or your computer</h2>
+ <p class="sub">Open Cashlytix in any browser and sign in. Your entries are there on every screen.</p>
+ <div class="ev rev">
+  <div class="desk"><div class="dbar"><i></i><i></i><i></i></div>
+   <div class="dbody"><div class="side"><div class="on">Home</div><div>Activity</div><div>Split</div><div>Accounts</div><div>Budgets</div><div>More</div></div>
+    <div class="main"><div class="kp"><div><small>Balance</small><b>₹1,12,212</b></div><div><small>Income</small><b>₹62,000</b></div><div><small>Spent</small><b>₹40,388</b></div></div>
+     <div class="ch"><i style="--h:40%;--i:0"></i><i style="--h:65%;--i:1"></i><i style="--h:30%;--i:2"></i><i style="--h:80%;--i:3"></i><i style="--h:55%;--i:4"></i><i style="--h:92%;--i:5"></i><i style="--h:48%;--i:6"></i><i style="--h:70%;--i:7"></i><i style="--h:35%;--i:8"></i><i style="--h:60%;--i:9"></i></div></div></div></div>
+  <div class="mini"><div class="kp"><div><small>Balance</small><b>₹1,12,212</b></div><div><small>Spent this month</small><b>₹40,388</b></div></div><div class="save">Add expense</div></div>
  </div>
-</section>
+ <div class="cta" style="margin-top:28px"><a class="btn" href="app/">Open the web app</a><a class="btn out" href="https://github.com/Ayush5474/cashlytix-app/releases">Download for Android</a></div>
+</div></section>
 
-<section class="band" id="plans" aria-labelledby="p-h">
- <div class="wrap">
-  <h2 id="p-h">Free to start. Pro is on the way.</h2>
-  <div class="plans">
-   <div class="plan">
-    <h3>Free</h3>
-    <ul>
-     <li>Unlimited transactions</li>
-     <li>Up to 5 accounts and 5 recurring entries</li>
-     <li>3 category budgets and 2 split groups</li>
-     <li>Calendar, split tracker, export and backup</li>
-    </ul>
-   </div>
-   <div class="plan pro">
-    <h3>Pro <span class="tag">Coming soon</span></h3>
-    <ul>
-     <li>No limits on accounts, recurring entries, budgets or groups</li>
-     <li>Everything new we build for power users</li>
-    </ul>
-    <p>Pricing is not set yet. Nothing is charged today.</p>
-   </div>
-  </div>
+<section><div class="wrap">
+ <h2 class="h2">Get started in a minute</h2>
+ <div class="steps">
+  <div class="step"><span>Step 1</span><h3>Register</h3><p>Use your email and a password. No card or bank details.</p></div>
+  <div class="step"><span>Step 2</span><h3>Choose where to use it</h3><p>Download the Android app, add it to your iPhone home screen, or use it in your browser.</p></div>
+  <div class="step"><span>Step 3</span><h3>Log your first expense</h3><p>Tap +, type the amount, tap Save.</p></div>
  </div>
-</section>
+</div></section>
 
-<section id="download" aria-labelledby="d-h">
- <div class="wrap">
-  <h2 id="d-h">Use it on any phone.</h2>
-  <p class="sub">The same app runs on Android, iPhone and in the browser.</p>
-  <div class="plans">
-   <div class="plan">
-    <h3>Android</h3>
-    <p>Download the latest APK from the releases page, open it and allow the install. A Play Store listing is planned.</p>
-    <p><a class="btn" href="https://github.com/Ayush5474/cashlytix-app/releases">Download the APK</a></p>
-   </div>
-   <div class="plan">
-    <h3>iPhone and browser</h3>
-    <p>Open the app in Safari, tap Share, then Add to Home Screen. It opens like any other app. This also works in Chrome on Android.</p>
-    <p><a class="btn" href="app/">Open the app</a></p>
-   </div>
-  </div>
+<section id="plans"><div class="wrap">
+ <h2 class="h2">Free to start</h2>
+ <div class="plans">
+  <div class="plan"><h3>Free</h3><ul><li>Unlimited transactions</li><li>Up to 5 accounts and 5 recurring entries</li><li>3 category budgets and 2 split groups</li><li>Calendar, backup and export</li></ul></div>
+  <div class="plan pro"><h3>Pro <span class="soon">Coming soon</span></h3><ul><li>No limits on accounts, budgets, recurring entries and groups</li><li>New advanced features first</li></ul><p style="color:var(--mu);font-size:.9rem;margin:16px 0 0">Pricing is not set. Nothing is charged today.</p></div>
  </div>
-</section>
+</div></section>
 
-<section class="band" id="faq" aria-labelledby="q-h">
- <div class="wrap">
-  <h2 id="q-h">Questions</h2>
-  <div style="margin-top:32px">
-   <details><summary>Where is my data stored?</summary><p>On your device. Cashlytix has no ads and no analytics. If you create an account to sync, your entries are also saved in your private cloud copy so your devices match.</p></details>
-   <details><summary>Does it connect to my bank?</summary><p>No. You add entries yourself, which keeps your bank details with you. It is why logging has to be this fast.</p></details>
-   <details><summary>Is it really free?</summary><p>Yes. The free plan has limits on accounts, recurring entries, budgets and groups. Pro will lift them. Nothing is charged today.</p></details>
-   <details><summary>Can I move my data to a new phone?</summary><p>Yes. Export a backup file from the More tab and restore it on the new phone, or sign in with sync turned on.</p></details>
-   <details><summary>Can my friends see my entries?</summary><p>No. Split bills are tracked in your own app. Shared groups where friends join with their own accounts are planned.</p></details>
-   <details><summary>How do I report a problem or ask for a feature?</summary><p><a href="https://github.com/Ayush5474/cashlytix-app/issues">Open an issue on GitHub</a>. We read every one.</p></details>
-  </div>
+<section id="faq"><div class="wrap">
+ <h2 class="h2">Questions</h2>
+ <div style="margin-top:24px">
+  <details><summary>Where is my data stored?</summary><p>On your device. If you create an account, a private copy is also saved so your phone and browser match. There are no ads and we do not sell data.</p></details>
+  <details><summary>Does it connect to my bank?</summary><p>No. You add entries yourself, which keeps your bank details with you.</p></details>
+  <details><summary>Is it really free?</summary><p>Yes. The free plan has limits on accounts, recurring entries, budgets and groups. Pro will lift them.</p></details>
+  <details><summary>Can I install it on my phone today?</summary><p>Store listings are planned. Until then, download the Android file or add the web app to your iPhone home screen.</p></details>
  </div>
-</section>
+</div></section>
 
-<section class="closing">
- <div class="wrap">
-  <h2>Start with one expense.</h2>
-  <div class="cta"><a class="btn" href="app/">Open the app</a></div>
- </div>
-</section>
+<section class="final"><div class="wrap"><h2 class="h2">Start with one expense.</h2><div class="cta"><a class="btn" href="app/">Get started free</a><a class="btn out" href="#app">Use it in your browser</a></div></div></section>
+</main>
 
-<footer>
- <div class="wrap">
-  <span>Cashlytix. A personal money tracker for India.</span>
-  <nav aria-label="Footer"><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="https://github.com/Ayush5474/cashlytix-app/issues">Contact</a></nav>
- </div>
-</footer>
+<footer><div class="wrap"><span><svg viewBox="0 0 120 80"><use href="#logo"/></svg>Cashlytix. A money tracker for India.</span><nav aria-label="Footer"><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="#faq">Help</a></nav></div></footer>
+
+
+
 <script src="site.js"></script>
-</body>
-</html>
+</body></html>
