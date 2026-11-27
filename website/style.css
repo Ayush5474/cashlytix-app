@@ -1,5 +1,5 @@
 
-@font-face{font-family:"Figtree";src:url(fonts/figtree-latin-wght-normal.woff2) format("woff2");font-weight:300 900;font-display:swap}}) format("woff2");font-weight:300 900;font-display:swap}
+@font-face{font-family:"Figtree";src:url(fonts/figtree-latin-wght-normal.woff2) format("woff2");font-weight:300 900;font-display:swap}
 :root{--bg:#0B100E;--s1:#111815;--s2:#18221D;--line:#24322B;--tx:#EAF2EE;--mu:#8FA398;--ac:#34C77B;--ac-ink:#052012;--warn:#F2B63D;--r:16px}
 [data-theme=light]{--bg:#FAFBFA;--s1:#FFFFFF;--s2:#F0F4F2;--line:#E1E8E4;--tx:#0E1A14;--mu:#56695E;--ac:#168A4A;--ac-ink:#FFFFFF;--warn:#C98A00}
 *{box-sizing:border-box}html{scroll-behavior:smooth}
